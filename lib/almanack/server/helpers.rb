@@ -3,7 +3,7 @@ module Almanack
     module Helpers
       # @return The URL to your consolidated iCal feed.
       def feed_url
-        "webcal://#{request.host}:#{request.port}/#{settings.feed_path}.ics"
+        "#{request.scheme}://#{request.host}#{request.port == 80 || request.port == 443 ? '' : ":#{request.port}"}/#{settings.feed_path}.ics"
       end
 
       # @return The URL to Almanack's project homepage.
