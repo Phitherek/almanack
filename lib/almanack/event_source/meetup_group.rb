@@ -2,6 +2,7 @@ module Almanack
   module EventSource
     class MeetupGroup
       def initialize(options = {})
+        @truncate_description = options.delete(:truncate_description)
         @request_options = options
         @group_properties = {}
       end
@@ -52,7 +53,7 @@ module Almanack
           title: event_name,
           start_time: start_time,
           end_time: end_time,
-          description: result['description'],
+          description: @truncate_description.present? ? result['description'].truncate(@truncate_description.to_i) : result['description'],
           location: location_from_venue(result['venue']),
           url: result['event_url']
         )
