@@ -26,6 +26,10 @@ module Almanack
       self[:description].present? ? self[:description].force_encoding('UTF-8') : ''
     end
 
+    def url
+      self[:url].present? ? self[:url].force_encoding('UTF-8') : ''
+    end
+
     # Deprecated in favour of start_time
     def start_date
       deprecated :start_date, newer_method: :start_time
